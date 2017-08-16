@@ -36,6 +36,7 @@ class NotesManager: NSObject {
     newObject.setValue(data.valueForKey("text"), forKey: "text")
     newObject.setValue(data.valueForKey("dateAdded"), forKey: "dateAdded")
     newObject.setValue(data.valueForKey("dateEdited"), forKey: "dateEdited")
+    newObject.setValue(data.valueForKey("image"), forKey: "image")
     saveContext()
   }
   
@@ -48,8 +49,11 @@ class NotesManager: NSObject {
     catch{
       return []
     }
-    
-    
+  }
+  
+  func deleteObject(object: NSManagedObject){
+    managedObjectContext?.deleteObject(object)
+    saveContext()
   }
   
   static func sharedNotesManager() -> NotesManager{

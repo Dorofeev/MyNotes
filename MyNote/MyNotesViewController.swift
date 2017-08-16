@@ -51,7 +51,23 @@ class MyNotesViewController: UITableViewController{
     }
     
     cell?.textLabel?.text = notesArray[indexPath.row].valueForKey("title") as? String
+    let imageData = notesArray[indexPath.row].valueForKey("image") as? NSData
+    if(imageData!.length > 0){
+      cell?.imageView?.image = UIImage(data: imageData!)
+    }
     return cell!
+  }
+  
+  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
+    if(editingStyle == .Delete){
+      let dataManager = NotesManager.sharedNotesManager()
+      dataManager.deleteObject(notesArray.objectAtIndex(indexPath.row) as! NSManagedObject)
+      notesTableView.reloadData()
+    }
+  }
+  
+  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle{
+    return UITableViewCellEditingStyle.Delete
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--My Fucking Notes-->
@@ -33,6 +34,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Fucking Notes" id="vla-24-nX2">
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="ivw-yt-3UV"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Heu-8C-WgM">
                             <connections>
                                 <segue destination="voE-dC-tuH" kind="show" identifier="Add" id="yeI-lJ-myC"/>
@@ -66,13 +68,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="bIJ-iQ-kWW">
-                                <rect key="frame" x="95" y="102" width="224" height="224"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="bIJ-iQ-kWW" secondAttribute="height" multiplier="1:1" id="tCC-9C-aJC"/>
-                                </constraints>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Note Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MmU-W5-7Sk">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Note Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MmU-W5-7Sk">
                                 <rect key="frame" x="0.0" y="354" width="414" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -81,19 +77,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3O-Ep-hId">
+                                <rect key="frame" x="97" y="93" width="231" height="191"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="f3O-Ep-hId" secondAttribute="height" multiplier="1:1" id="CWY-Gj-eN3"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="noImage"/>
+                                <connections>
+                                    <action selector="imageButtonAction:" destination="voE-dC-tuH" eventType="touchUpInside" id="saK-RG-djN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2bX-Js-09j" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="-20" id="1Hz-dL-Jkv"/>
-                            <constraint firstItem="bIJ-iQ-kWW" firstAttribute="top" secondItem="hmu-Uo-9Ev" secondAttribute="bottom" constant="38" id="4CT-lN-FfU"/>
+                            <constraint firstItem="f3O-Ep-hId" firstAttribute="top" secondItem="hmu-Uo-9Ev" secondAttribute="bottom" constant="28" id="5Y8-rb-egN"/>
                             <constraint firstItem="2bX-Js-09j" firstAttribute="top" secondItem="MmU-W5-7Sk" secondAttribute="bottom" constant="64" id="DAe-hl-Lbk"/>
+                            <constraint firstItem="MmU-W5-7Sk" firstAttribute="top" secondItem="f3O-Ep-hId" secondAttribute="bottom" constant="28" id="DPj-Lh-rRJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2bX-Js-09j" secondAttribute="trailing" constant="-20" id="L2G-Eg-ArS"/>
+                            <constraint firstItem="f3O-Ep-hId" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="75" id="PnN-vL-R6D"/>
                             <constraint firstItem="Drg-CX-lM3" firstAttribute="top" secondItem="2bX-Js-09j" secondAttribute="bottom" constant="24" id="UCk-kP-nNK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f3O-Ep-hId" secondAttribute="trailing" constant="75" id="aIQ-ey-sqb"/>
                             <constraint firstItem="MmU-W5-7Sk" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="-20" id="jQP-pb-3N8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MmU-W5-7Sk" secondAttribute="trailing" constant="-20" id="nEc-Z2-UdY"/>
-                            <constraint firstItem="MmU-W5-7Sk" firstAttribute="top" secondItem="bIJ-iQ-kWW" secondAttribute="bottom" constant="28" id="oOD-8P-R8V"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bIJ-iQ-kWW" secondAttribute="trailing" constant="75" id="q12-2F-ZDV"/>
-                            <constraint firstItem="bIJ-iQ-kWW" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="75" id="rqN-iB-tcq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Note" id="AQk-1T-MMZ">
@@ -103,14 +109,22 @@
                                 <action selector="backBarButtonAction:" destination="voE-dC-tuH" id="mZO-rV-DZe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JbE-bq-62d">
-                            <connections>
-                                <action selector="saveBarButtonAction:" destination="voE-dC-tuH" id="DWx-M5-vqz"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="save" id="JbE-bq-62d">
+                                <connections>
+                                    <action selector="saveBarButtonAction:" destination="voE-dC-tuH" id="DWx-M5-vqz"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="Xca-Ij-Fqm">
+                                <connections>
+                                    <action selector="deleteObjectBarButtonAction:" destination="voE-dC-tuH" id="XRU-ZN-Dak"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="noteImageButton" destination="f3O-Ep-hId" id="JsB-11-mWG"/>
                         <outlet property="noteTextTextView" destination="2bX-Js-09j" id="pTt-eS-lZV"/>
                         <outlet property="noteTitleTextView" destination="MmU-W5-7Sk" id="3Z9-Pe-KZB"/>
                     </connections>
@@ -138,7 +152,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="noImage" width="600" height="600"/>
+        <image name="noImage" width="502" height="508"/>
+        <image name="settings" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yeI-lJ-myC"/>
