@@ -42,6 +42,7 @@ class NotesManager: NSObject {
   
   func getAllData() ->NSArray{
     let request = NSFetchRequest.init(entityName: "Note")
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     do {
       let allDataArray = try self.managedObjectContext?.executeFetchRequest(request)
       return allDataArray!
@@ -53,6 +54,14 @@ class NotesManager: NSObject {
   
   func deleteObject(object: NSManagedObject){
     managedObjectContext?.deleteObject(object)
+    saveContext()
+  }
+  
+  func deleteAllObjects(){
+    let allData = getAllData()
+    for object in allData {
+      managedObjectContext?.deleteObject(object as! NSManagedObject)
+    }
     saveContext()
   }
   

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wE9-F4-szn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -34,7 +33,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Fucking Notes" id="vla-24-nX2">
-                        <barButtonItem key="leftBarButtonItem" image="settings" id="ivw-yt-3UV"/>
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="ivw-yt-3UV">
+                            <connections>
+                                <segue destination="T8y-YJ-HPS" kind="show" id="NKM-J1-xcs"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Heu-8C-WgM">
                             <connections>
                                 <segue destination="voE-dC-tuH" kind="show" identifier="Add" id="yeI-lJ-myC"/>
@@ -50,6 +53,85 @@
             </objects>
             <point key="canvasLocation" x="280" y="168"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="v00-17-9di">
+            <objects>
+                <viewController id="T8y-YJ-HPS" customClass="SettingsViewController" customModule="MyNote" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LJr-38-byf"/>
+                        <viewControllerLayoutGuide type="bottom" id="NGn-bH-1be"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3fF-UM-bSf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9H-LW-Dt4">
+                                <rect key="frame" x="0.0" y="134" width="414" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvn-L4-hSx">
+                                        <rect key="frame" x="8" y="11" width="68" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="5yp-k5-E1A"/>
+                                            <constraint firstAttribute="width" constant="68" id="Znn-AY-Irq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="jqN-bh-WSR">
+                                        <rect key="frame" x="84" y="8" width="322" height="29"/>
+                                        <segments>
+                                            <segment title="TItle"/>
+                                            <segment title="Date Edited"/>
+                                            <segment title="Date Added"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="15m-8C-jJF"/>
+                                    <constraint firstItem="jqN-bh-WSR" firstAttribute="top" secondItem="b9H-LW-Dt4" secondAttribute="top" constant="8" id="H1v-zi-laP"/>
+                                    <constraint firstItem="Hvn-L4-hSx" firstAttribute="centerY" secondItem="b9H-LW-Dt4" secondAttribute="centerY" id="HaD-xk-XEe"/>
+                                    <constraint firstItem="jqN-bh-WSR" firstAttribute="leading" secondItem="Hvn-L4-hSx" secondAttribute="trailing" constant="8" id="Nlc-g6-b9b"/>
+                                    <constraint firstItem="Hvn-L4-hSx" firstAttribute="leading" secondItem="b9H-LW-Dt4" secondAttribute="leading" constant="8" id="b4f-dd-Nav"/>
+                                    <constraint firstAttribute="trailing" secondItem="jqN-bh-WSR" secondAttribute="trailing" constant="8" id="bXb-gh-4T2"/>
+                                    <constraint firstAttribute="bottom" secondItem="jqN-bh-WSR" secondAttribute="bottom" constant="8" id="g0n-dv-Em2"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-LA-Tgf">
+                                <rect key="frame" x="20" y="251" width="374" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="yrm-9A-c8m"/>
+                                </constraints>
+                                <state key="normal" title="Delete all notes">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteAllNotesAction:" destination="T8y-YJ-HPS" eventType="touchUpInside" id="itd-QE-PNC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="VXa-LA-Tgf" firstAttribute="top" secondItem="b9H-LW-Dt4" secondAttribute="bottom" constant="44" id="0si-Qw-N9D"/>
+                            <constraint firstItem="VXa-LA-Tgf" firstAttribute="trailing" secondItem="3fF-UM-bSf" secondAttribute="trailingMargin" id="1om-Wi-MIF"/>
+                            <constraint firstItem="b9H-LW-Dt4" firstAttribute="top" secondItem="LJr-38-byf" secondAttribute="bottom" constant="44" id="JdY-Vk-GQZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="b9H-LW-Dt4" secondAttribute="trailing" constant="-20" id="ctE-2Y-VZT"/>
+                            <constraint firstItem="b9H-LW-Dt4" firstAttribute="leading" secondItem="3fF-UM-bSf" secondAttribute="leadingMargin" constant="-20" id="dnf-Ws-2sO"/>
+                            <constraint firstItem="VXa-LA-Tgf" firstAttribute="leading" secondItem="3fF-UM-bSf" secondAttribute="leadingMargin" id="gBd-a9-aSV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="Vol-DR-pLL"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="deleteAllNotesButton" destination="VXa-LA-Tgf" id="upg-J4-DlE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yjb-sI-Cib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="280" y="1109"/>
+        </scene>
         <!--Add Note-->
         <scene sceneID="NIq-uV-gdt">
             <objects>
@@ -63,7 +145,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Note Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2bX-Js-09j">
-                                <rect key="frame" x="0.0" y="471" width="414" height="213"/>
+                                <rect key="frame" x="0.0" y="471" width="414" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -72,7 +154,7 @@
                                 <rect key="frame" x="0.0" y="354" width="414" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="KHb-Vd-fK7"/>
+                                    <constraint firstAttribute="height" constant="44" id="KHb-Vd-fK7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -80,7 +162,8 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3O-Ep-hId">
                                 <rect key="frame" x="97" y="93" width="231" height="191"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="f3O-Ep-hId" secondAttribute="height" multiplier="1:1" id="CWY-Gj-eN3"/>
+                                    <constraint firstAttribute="width" constant="80" id="EBp-RI-Idk"/>
+                                    <constraint firstAttribute="height" constant="80" id="RVb-Va-ZZA"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="noImage"/>
                                 <connections>
@@ -92,12 +175,11 @@
                         <constraints>
                             <constraint firstItem="2bX-Js-09j" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="-20" id="1Hz-dL-Jkv"/>
                             <constraint firstItem="f3O-Ep-hId" firstAttribute="top" secondItem="hmu-Uo-9Ev" secondAttribute="bottom" constant="28" id="5Y8-rb-egN"/>
-                            <constraint firstItem="2bX-Js-09j" firstAttribute="top" secondItem="MmU-W5-7Sk" secondAttribute="bottom" constant="64" id="DAe-hl-Lbk"/>
+                            <constraint firstItem="2bX-Js-09j" firstAttribute="top" secondItem="MmU-W5-7Sk" secondAttribute="bottom" constant="28" id="DAe-hl-Lbk"/>
                             <constraint firstItem="MmU-W5-7Sk" firstAttribute="top" secondItem="f3O-Ep-hId" secondAttribute="bottom" constant="28" id="DPj-Lh-rRJ"/>
+                            <constraint firstItem="f3O-Ep-hId" firstAttribute="centerX" secondItem="Wdu-fu-V37" secondAttribute="centerX" id="GxY-gr-f2I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2bX-Js-09j" secondAttribute="trailing" constant="-20" id="L2G-Eg-ArS"/>
-                            <constraint firstItem="f3O-Ep-hId" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="75" id="PnN-vL-R6D"/>
                             <constraint firstItem="Drg-CX-lM3" firstAttribute="top" secondItem="2bX-Js-09j" secondAttribute="bottom" constant="24" id="UCk-kP-nNK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="f3O-Ep-hId" secondAttribute="trailing" constant="75" id="aIQ-ey-sqb"/>
                             <constraint firstItem="MmU-W5-7Sk" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="-20" id="jQP-pb-3N8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MmU-W5-7Sk" secondAttribute="trailing" constant="-20" id="nEc-Z2-UdY"/>
                         </constraints>

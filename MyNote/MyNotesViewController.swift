@@ -19,6 +19,10 @@ class MyNotesViewController: UITableViewController{
   
     override func viewDidLoad() {
         super.viewDidLoad()
+      let userDefaults = NSUserDefaults.standardUserDefaults()
+      if(userDefaults.valueForKey("sortBy") == nil){
+        userDefaults.setValue("dateAdded", forKey: "sortBy")
+      }
         // Do any additional setup after loading the view, typically from a nib.
     }
   
@@ -52,7 +56,7 @@ class MyNotesViewController: UITableViewController{
     
     cell?.textLabel?.text = notesArray[indexPath.row].valueForKey("title") as? String
     let imageData = notesArray[indexPath.row].valueForKey("image") as? NSData
-    if(imageData!.length > 0){
+    if(imageData != nil){
       cell?.imageView?.image = UIImage(data: imageData!)
     }
     return cell!
