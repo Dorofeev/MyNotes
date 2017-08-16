@@ -24,7 +24,7 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         let dataManager = NotesManager.sharedNotesManager()
         noteTitleTextView.text = dataManager.currentManagedObject?.valueForKey("title") as! String
         noteTextTextView.text = dataManager.currentManagedObject?.valueForKey("text") as! String
-        if(dataManager.currentManagedObject?.valueForKey("image") != nil){
+        if(dataManager.currentManagedObject?.valueForKey("image") != nil && dataManager.currentManagedObject?.valueForKey("image")?.length > 0){
           let imageData = dataManager.currentManagedObject?.valueForKey("image") as! NSData
           noteImageButton.setBackgroundImage(UIImage(data: imageData), forState: UIControlState.Normal)
           isImageSetted = true

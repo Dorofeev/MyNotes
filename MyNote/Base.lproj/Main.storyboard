@@ -85,6 +85,9 @@
                                             <segment title="Date Edited"/>
                                             <segment title="Date Added"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="sortByDidChange:" destination="T8y-YJ-HPS" eventType="valueChanged" id="VBx-4E-m6e"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,6 +129,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="deleteAllNotesButton" destination="VXa-LA-Tgf" id="upg-J4-DlE"/>
+                        <outlet property="sortBySegementedControl" destination="jqN-bh-WSR" id="TRB-3S-K3b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yjb-sI-Cib" userLabel="First Responder" sceneMemberID="firstResponder"/>

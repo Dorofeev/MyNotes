@@ -42,7 +42,15 @@ class NotesManager: NSObject {
   
   func getAllData() ->NSArray{
     let request = NSFetchRequest.init(entityName: "Note")
-    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let sortBy = NSUserDefaults.standardUserDefaults().valueForKey("sortBy") as! String
+    if(sortBy == "title"){
+      let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+      request.sortDescriptors = [sortDescriptor]
+    }else{
+      let sortDescriptor = NSSortDescriptor(key: sortBy, ascending: false)
+      request.sortDescriptors = [sortDescriptor]
+    }
+    
     do {
       let allDataArray = try self.managedObjectContext?.executeFetchRequest(request)
       return allDataArray!
