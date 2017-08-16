@@ -12,31 +12,23 @@ import CoreData
 
 class MyNotesViewController: UITableViewController{
   
-  
   @IBOutlet var notesTableView: UITableView!
+  private var notesArray: NSArray! = nil
   
-  var notesArray: NSArray! = nil
-  
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      let userDefaults = NSUserDefaults.standardUserDefaults()
-      if(userDefaults.valueForKey("sortBy") == nil){
-        userDefaults.setValue("dateAdded", forKey: "sortBy")
-      }
-        // Do any additional setup after loading the view, typically from a nib.
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    if userDefaults.valueForKey("sortBy") == nil {
+      userDefaults.setValue("dateAdded", forKey: "sortBy")
     }
+  }
   
   override func viewDidAppear(animated: Bool) {
     notesTableView.reloadData()
   }
   
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if(segue.identifier == "Edit"){
+    if segue.identifier == "Edit" {
       let detailsViewController = segue.destinationViewController
       detailsViewController.navigationItem.title = "Edit Note"
     }
@@ -50,20 +42,20 @@ class MyNotesViewController: UITableViewController{
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
     var cell = tableView.dequeueReusableCellWithIdentifier("noteCell")
-    if((cell == nil)){
+    if cell == nil {
       cell = UITableViewCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: "noteCell")
     }
     cell?.imageView?.image = nil
     cell?.textLabel?.text = notesArray[indexPath.row].valueForKey("title") as? String
     let imageData = notesArray[indexPath.row].valueForKey("image") as? NSData
-    if(imageData != nil){
+    if imageData != nil {
       cell?.imageView?.image = UIImage(data: imageData!)
     }
     return cell!
   }
   
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
-    if(editingStyle == .Delete){
+    if editingStyle == .Delete {
       let dataManager = NotesManager.sharedNotesManager()
       dataManager.deleteObject(notesArray.objectAtIndex(indexPath.row) as! NSManagedObject)
       notesArray = dataManager.getAllData()
@@ -78,13 +70,13 @@ class MyNotesViewController: UITableViewController{
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     NotesManager.sharedNotesManager().currentManagedObject = notesArray.objectAtIndex(indexPath.row) as? NSManagedObject
   }
-
-
+  
+  
 }
 
 
-  
-  
-  
+
+
+
 
 
