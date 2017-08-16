@@ -85,8 +85,13 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
     let pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+    let scaleSize = CGSizeMake(100, 100)
+    UIGraphicsBeginImageContext(scaleSize)
+    pickedImage.drawInRect(CGRectMake(0, 0, 100, 100))
+    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
     picker.dismissViewControllerAnimated(true, completion: nil)
-    self.setImage(pickedImage)
+    self.setImage(resizedImage)
     
   }
 

@@ -53,7 +53,7 @@ class MyNotesViewController: UITableViewController{
     if((cell == nil)){
       cell = UITableViewCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: "noteCell")
     }
-    
+    cell?.imageView?.image = nil
     cell?.textLabel?.text = notesArray[indexPath.row].valueForKey("title") as? String
     let imageData = notesArray[indexPath.row].valueForKey("image") as? NSData
     if(imageData != nil){
@@ -66,6 +66,7 @@ class MyNotesViewController: UITableViewController{
     if(editingStyle == .Delete){
       let dataManager = NotesManager.sharedNotesManager()
       dataManager.deleteObject(notesArray.objectAtIndex(indexPath.row) as! NSManagedObject)
+      notesArray = dataManager.getAllData()
       notesTableView.reloadData()
     }
   }
