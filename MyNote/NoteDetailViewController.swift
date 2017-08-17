@@ -16,6 +16,9 @@ class NoteDetailViewController: UIViewController {
   @IBOutlet weak var noteTitleTextView: UITextView!
   @IBOutlet weak var noteTextTextView: UITextView!
   
+  @IBOutlet weak var noteImageWidthConstraint: NSLayoutConstraint!
+  @IBOutlet weak var noteImageHeightContraint: NSLayoutConstraint!
+  
   private var isImageSetted: Bool = false
   
   override func viewDidLoad() {
@@ -35,11 +38,24 @@ class NoteDetailViewController: UIViewController {
       }
     }
     automaticallyAdjustsScrollViewInsets = false
+    
+    initContraints()
   }
   
   private func setImage(image: UIImage){
     noteImageButton.setBackgroundImage(image, forState: UIControlState.Normal)
     isImageSetted = true
+  }
+  
+  private func initContraints() {
+    let screenWidth = self.view.bounds.width
+    if screenWidth == 375.0 {
+      noteImageHeightContraint.constant = 135.0
+      noteImageWidthConstraint.constant = 135.0
+    }else if screenWidth > 400{
+      noteImageHeightContraint.constant = 175.0
+      noteImageWidthConstraint.constant = 175.0
+    }
   }
   
   @IBAction func imageButtonAction(sender: AnyObject) {
@@ -118,14 +134,13 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate{
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
     let pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-    let scaleSize = CGSizeMake(100, 100)
+    let scaleSize = CGSizeMake(200, 200)
     UIGraphicsBeginImageContext(scaleSize)
-    pickedImage.drawInRect(CGRectMake(0, 0, 100, 100))
+    pickedImage.drawInRect(CGRectMake(0, 0, 200, 200))
     let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     picker.dismissViewControllerAnimated(true, completion: nil)
     self.setImage(resizedImage)
-    
   }
 }
 

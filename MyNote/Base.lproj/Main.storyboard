@@ -198,10 +198,10 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2bX-Js-09j" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="-20" id="1Hz-dL-Jkv"/>
-                            <constraint firstItem="f3O-Ep-hId" firstAttribute="top" secondItem="hmu-Uo-9Ev" secondAttribute="bottom" constant="28" id="5Y8-rb-egN"/>
+                            <constraint firstItem="f3O-Ep-hId" firstAttribute="top" secondItem="hmu-Uo-9Ev" secondAttribute="bottom" constant="20" id="5Y8-rb-egN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bLW-T4-ih2" secondAttribute="trailing" constant="-20" id="CQj-Oo-VsA"/>
                             <constraint firstItem="2bX-Js-09j" firstAttribute="top" secondItem="MmU-W5-7Sk" secondAttribute="bottom" constant="28" id="DAe-hl-Lbk"/>
-                            <constraint firstItem="MmU-W5-7Sk" firstAttribute="top" secondItem="f3O-Ep-hId" secondAttribute="bottom" constant="28" id="DPj-Lh-rRJ"/>
+                            <constraint firstItem="MmU-W5-7Sk" firstAttribute="top" secondItem="f3O-Ep-hId" secondAttribute="bottom" constant="36" id="DPj-Lh-rRJ"/>
                             <constraint firstItem="f3O-Ep-hId" firstAttribute="centerX" secondItem="Wdu-fu-V37" secondAttribute="centerX" id="GxY-gr-f2I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2bX-Js-09j" secondAttribute="trailing" constant="-20" id="L2G-Eg-ArS"/>
                             <constraint firstItem="rBm-gW-L86" firstAttribute="leading" secondItem="Wdu-fu-V37" secondAttribute="leadingMargin" constant="-20" id="QE9-id-vUa"/>
@@ -238,6 +238,8 @@
                     <connections>
                         <outlet property="deleteNoteBarButtonItem" destination="Xca-Ij-Fqm" id="rPB-EM-pF9"/>
                         <outlet property="noteImageButton" destination="f3O-Ep-hId" id="JsB-11-mWG"/>
+                        <outlet property="noteImageHeightContraint" destination="RVb-Va-ZZA" id="37u-ym-mJf"/>
+                        <outlet property="noteImageWidthConstraint" destination="EBp-RI-Idk" id="qMD-0t-t6H"/>
                         <outlet property="noteTextTextView" destination="2bX-Js-09j" id="pTt-eS-lZV"/>
                         <outlet property="noteTitleTextView" destination="MmU-W5-7Sk" id="3Z9-Pe-KZB"/>
                     </connections>
